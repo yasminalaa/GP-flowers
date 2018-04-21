@@ -47,7 +47,7 @@ def main():
 	parser.add_argument('--beta1', type=float, default=0.5,
 					   help='Momentum for Adam Update')
 
-	parser.add_argument('--epochs', type=int, default=600,
+	parser.add_argument('--epochs', type=int, default=100,
 					   help='Max number of epochs')
 
 	parser.add_argument('--save_every', type=int, default=30,
@@ -74,9 +74,9 @@ def main():
 	
 	gan = model.GAN(model_options)
 	input_tensors, variables, loss, outputs, checks = gan.build_model()
-	
-	d_optim = tf.train.AdamOptimizer(args.learning_rate, beta1 = args.beta1).minimize(loss['d_loss'], var_list=variables['d_vars'])
-	g_optim = tf.train.AdamOptimizer(args.learning_rate, beta1 = args.beta1).minimize(loss['g_loss'], var_list=variables['g_vars'])
+	with tf.variable_scope(tf.get_variable_scope(), reuse=False):
+		d_optim = tf.train.AdamOptimizer(args.learning_rate, beta1 = args.beta1).minimize(loss['d_loss'], var_list=variables['d_vars'])
+		g_optim = tf.train.AdamOptimizer(args.learning_rate, beta1 = args.beta1).minimize(loss['g_loss'], var_list=variables['g_vars'])
 	
 	sess = tf.InteractiveSession()
 	tf.initialize_all_variables().run()
@@ -235,9 +235,7 @@ def get_training_batch(batch_no, batch_size, image_size, z_dim,
 			real_images[cnt,:,:,:] = image_array
 			
 			# Improve this selection of wrong image
-			wrong_image_id = idx
-			while wrong_image_id == idx:
-				wrong_image_id = random.randint(0,len(loaded_data['image_list'])-1)
+			wrong_image_id = random.randint(0,len(loaded_data['image_list'])-1)
 			wrong_image_file =  join(data_dir, 'flowers/jpg/'+loaded_data['image_list'][wrong_image_id])
 			wrong_image_array = image_processing.load_image_array(wrong_image_file, image_size)
 			wrong_images[cnt, :,:,:] = wrong_image_array

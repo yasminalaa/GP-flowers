@@ -41,7 +41,7 @@ def main():
 	parser.add_argument('--model_path', type=str, default='Data/Models/latest_model_flowers_temp.ckpt',
                        help='Trained Model Path')
 
-	parser.add_argument('--n_images', type=int, default=5,
+	parser.add_argument('--n_images', type=int, default=1,
                        help='Number of Images per Caption')
 
 	parser.add_argument('--caption_thought_vectors', type=str, default='Data/sample_caption_vectors.hdf5',

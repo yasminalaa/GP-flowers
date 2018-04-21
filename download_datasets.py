@@ -4,7 +4,6 @@ import os
 import sys
 import errno
 import tarfile
-
 if sys.version_info >= (3,):
     from urllib.request import urlretrieve
 else:
