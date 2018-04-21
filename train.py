@@ -141,7 +141,7 @@ def main():
 			for i in range (0,len(disc_loss)):
 				for j in range(0,len(disc_loss[i])):
 					tmp = str(disc_loss[i][j])
-					if j < len(i)-1:
+					if j < len(disc_loss[i])-1:
 						tmp+='\t'
 					f.write(tmp)
 				f.write('\n')
