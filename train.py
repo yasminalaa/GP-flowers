@@ -137,17 +137,17 @@ def main():
 				save_path = saver.save(sess, "Data/Models/latest_model_{}_temp.ckpt".format(args.data_set))
 		if i%5 == 0:
 			save_path = saver.save(sess, "Data/Models/model_after_{}_epoch_{}.ckpt".format(args.data_set, i))
-		with open('Data/Losses/discriminator_loss_epoch_{}'.format(i),'w')as f:
-			for i in range (0,len(disc_loss)):
-				for j in range(0,len(disc_loss[i])):
-					tmp = str(disc_loss[i][j])
-					if j < len(disc_loss[i])-1:
+		with open('Data/Losses/discriminator_loss_epoch_{}.txt'.format(i),'w')as f:
+			for m in range (0,len(disc_loss)):
+				for j in range(0,len(disc_loss[m])):
+					tmp = str(disc_loss[m][j])
+					if j < len(disc_loss[m])-1:
 						tmp+='\t'
 					f.write(tmp)
 				f.write('\n')
-		with open('Data/Losses/generator_loss_epoch_{}'.format(i),'w')as f:
-			for i in range (0,len(gen_loss)):
-				tmp = str(gen_loss[i])
+		with open('Data/Losses/generator_loss_epoch_{}.txt'.format(i),'w')as f:
+			for m in range (0,len(gen_loss)):
+				tmp = str(gen_loss[m])
 				f.write(tmp+'\n')
 def load_training_data(data_dir, data_set):
 	if data_set == 'flowers':
