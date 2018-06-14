@@ -41,19 +41,19 @@ def main():
 	parser.add_argument('--data_dir', type=str, default="Data",
 					   help='Data Directory')
 
-	parser.add_argument('--learning_rate', type=float, default=0.0002,
+	parser.add_argument('--learning_rate', type=float, default=0.0004,
 					   help='Learning Rate')
 
 	parser.add_argument('--beta1', type=float, default=0.5,
 					   help='Momentum for Adam Update')
 
-	parser.add_argument('--epochs', type=int, default=408,
+	parser.add_argument('--epochs', type=int, default=200,
 					   help='Max number of epochs')
 
 	parser.add_argument('--save_every', type=int, default=30,
 					   help='Save Model/Samples every x iterations over batches')
 
-	parser.add_argument('--resume_model', type=str, default='Data/Models/model_after_flowers_epoch_95.ckpt',
+	parser.add_argument('--resume_model', type=str, default=None,
                        help='Pre-Trained Model Path, to resume from')
 
 	parser.add_argument('--data_set', type=str, default="flowers",
